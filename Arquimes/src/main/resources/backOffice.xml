@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<package name="backOffice" namespace="/backOffice" extends="struts-default">
+		<interceptors>
+			<interceptor name="iterceptorAtuentication"
+				class="com.sirx.arquimes.Interceptor.AutenticationInterceptor" />
+			<interceptor-stack name="secureStack">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="iterceptorAtuentication" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="secureStack" />
+
+		<global-results>
+			<result name="login">${catalina.home}/pages/backOffice/Login.jsp</result>
+			<result name="success">${catalina.home}/pages/backOffice/Menu.jsp</result>
+		</global-results>
+		
+		<action name="addContentForm" class="com.sirx.arquimes.BackOffice.AddContentForm">
+			<result name="success">${catalina.home}/pages/backOffice/templateBackOffice.jsp
+			</result>
+			<result name="error">${catalina.home}/pages/backOffice/templateBackOffice.jsp
+			</result>
+			<result name="input">${catalina.home}/pages/backOffice/templateBackOffice.jsp
+			</result>
+		</action>
+		
+		<action name="*SectionForm" method="{1}" class="com.sirx.arquimes.BackOffice.AddSectionForm">
+			<result name="success">${catalina.home}/pages/backOffice/templateBackOffice.jsp</result>
+			<result name="fail">${catalina.home}/pages/backOffice/templateBackOffice.jsp</result>
+		</action>
+		
+		<action name="*Content" method="{1}" class="com.sirx.arquimes.BackOffice.ContentHandler">
+			<param name="idContent"></param>
+			<result name="getContentSuccess">${catalina.home}/pages/backOffice/getContent.jsp</result>
+			<result name="success">${catalina.home}/pages/backOffice/templateBackOffice.jsp</result>
+		</action>
+		<action name="*Image" method="{1}" class="com.sirx.arquimes.BackOffice.ImageHandler">
+			<param name="idImage"></param>
+			<param name="idSection"></param>
+			<result name="editSuccess">${catalina.home}/pages/backOffice/editImage.jsp</result>
+			<result name="deleteSuccess">${catalina.home}/pages/backOffice/editImage.jsp</result>
+			<result name="deleteError">${catalina.home}/pages/backOffice/editImage.jsp</result>
+			
+			<result name="success"></result>
+		</action>
+		
+		<action name="*Action" method="{1}"	class="com.sirx.arquimes.BackOffice.BackOffice">
+			<result name="publicacions">${catalina.home}/pages/backOffice/backOfficePage.jsp</result>
+			<result name="projectes">	${catalina.home}/pages/backOffice/backOfficePage.jsp</result>
+			<result name="portada">		${catalina.home}/pages/backOffice/backOfficePage.jsp</result>
+			<result name="estudi">		${catalina.home}/pages/backOffice/backOfficePage.jsp</result>
+			<result name="enCurs">		${catalina.home}/pages/backOffice/backOfficePage.jsp</result>
+			<result name="individual">	${catalina.home}/pages/backOffice/backOfficePage.jsp</result>
+			<result name="colectiu">	${catalina.home}/pages/backOffice/backOfficePage.jsp</result>
+			<result name="urbanisme">	${catalina.home}/pages/backOffice/backOfficePage.jsp</result>
+			<result name="contacte">	${catalina.home}/pages/backOffice/backOfficePage.jsp</result>
+			<result name="serveis">		${catalina.home}/pages/backOffice/backOfficePage.jsp</result>
+			<result name="actualitat">	${catalina.home}/pages/backOffice/backOfficePage.jsp</result>
+			<result name="input">		${catalina.home}/pages/backOffice/Login.jsp</result>
+			<result name="success">		${catalina.home}/pages/backOffice/Menu.jsp</result>
+		</action>
+		<action name="*Redirection">
+			<result name="success">${catalina.home}/pages/backOffice/Menu.jsp</result>
+		</action>	
+		<action name="logout" method="logout" class="com.sirx.arquimes.BackOffice.BackOffice">
+			<result name="login">${catalina.home}/pages/backOffice/Login.jsp</result>
+		</action>
+		<action name="*" class="com.sirx.arquimes.BackOffice.LoginForm">
+			<result name="input">${catalina.home}/pages/backOffice/Login.jsp</result>
+			<result name="menu">${catalina.home}/pages/backOffice/templateBackOffice.jsp</result>
+		</action>
+
+	</package>
+</struts>

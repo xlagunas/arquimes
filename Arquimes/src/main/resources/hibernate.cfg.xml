@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		<!-- <property name="hibernate.connection.password"></property> -->
+		<property name="hibernate.connection.url">
+			jdbc:mysql://localhost/arquimes
+		</property>
+		<property name="hibernate.connection.password">arquimes</property>
+		<property name="hibernate.connection.username">arquimes</property>
+
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQLInnoDBDialect
+		</property>
+		<property name="hibernate.current_session_context_class">
+			thread
+		</property>
+
+		<!-- Propiedades de configuracion del pool de conexiones -->
+		<property name="hibernate.connection.pool_size">
+			1
+		</property>
+		<property name="hibernate.c3p0.max_size">
+			15
+		</property><!-- mÃ¡ximo nÃºmero de conexiones -->
+		<property name="hibernate.c3p0.min_size">
+			5
+		</property><!-- mÃ­nimo nÃºmero de conexiones -->
+		<property name="hibernate.c3p0.timeout">
+			5000
+		</property><!-- mÃ¡ximo tiempo de espera por una conexiÃ³n -->
+		<property name="hibernate.c3p0.max_statements">
+			250
+		</property><!-- nÃºmero mÃ¡ximo de sentencias -->
+		<property name="hibernate.c3p0.idle_test_period">
+			300
+		</property><!-- maximo tiempo de inactividad antes de volver a verificar -->
+		<property name="hibernate.c3p0.acquire_increment">
+			3
+		</property>
+
+		<property name="hibernate.show_sql">
+			false
+		</property>
+		<property name="hibernate.hbm2ddl.auto">
+			update
+		</property>
+		<property name="hibernate.cache.provider_class">
+			org.hibernate.cache.NoCacheProvider
+		</property>
+		<property name="hibernate.connection.provider_class">
+			org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider
+		</property>
+		<property name="hibernate.max_fetch_depth">
+			2
+		</property>
+
+		<mapping class="com.sirx.arquimes.Model.Content" />
+		<mapping class="com.sirx.arquimes.Model.InternationalText" />
+		<mapping class="com.sirx.arquimes.Model.Image" />
+		<mapping class="com.sirx.arquimes.Model.Section" />
+
+	</session-factory>
+</hibernate-configuration>

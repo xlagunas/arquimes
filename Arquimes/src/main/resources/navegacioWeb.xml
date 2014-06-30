@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<!-- - This file is included by the struts.xml file as an example - of how 
+	to break up the configuration file into multiple files. -->
+<struts>
+	<package name="navegacioWeb" namespace="/" extends="struts-default">
+		
+		<global-results>
+			<result name="error">${catalina.home}/error/404.html</result>
+		</global-results>
+
+		<action name="localeChange"
+			class="com.sirx.arquimes.Arquimes.navegacioWeb.LocaleChange">
+			<result name="success" type="redirectAction">introLink</result>
+		</action>
+		<action name="sendContactMail" class="com.sirx.arquimes.Arquimes.navegacioWeb.ContactForm">
+			<result name="success">${catalina.home}/pages/navegacioWeb/contacte.jsp</result>
+		</action>
+		<action name="*Link" method="{1}"
+			class="com.sirx.arquimes.Arquimes.navegacioWeb.MainController">
+			<result name="projectes" >${catalina.home}/pages/navegacioWeb/projectes.jsp</result>
+			<result name="colectiu" >${catalina.home}/pages/navegacioWeb/colectiu.jsp</result>
+			<result name="urbanisme" >${catalina.home}/pages/navegacioWeb/urbanisme.jsp</result>
+			<result name="individual" >${catalina.home}/pages/navegacioWeb/individual.jsp</result>
+			<result name="encurs">${catalina.home}/pages/navegacioWeb/encurs.jsp</result>
+			<result name="publicacions">${catalina.home}/pages/navegacioWeb/publicacions.jsp</result>
+			<result name="contacte">${catalina.home}/pages/navegacioWeb/contacte.jsp</result>
+			<result name="estudi">${catalina.home}/pages/navegacioWeb/estudi.jsp</result>
+			<result name="serveis">${catalina.home}/pages/navegacioWeb/serveis.jsp</result>
+			<result name="actualitat">${catalina.home}/pages/navegacioWeb/actualitat.jsp</result>
+			<result name="intro">${catalina.home}/pages/navegacioWeb/inici.jsp</result>
+		</action>
+		<action name="getContent" class="com.sirx.arquimes.Arquimes.navegacioWeb.SingleContent">
+			<result name="success">${catalina.home}/pages/navegacioWeb/getContent.jsp</result>
+		</action>
+
+		<action name="*">
+			<result>error</result>
+		</action>
+	</package>
+</struts>
